@@ -1,8 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<BrickCity.Models.Consumer>
+@{
+    ViewData["Title"] = "Список потребителей";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h3>Потребители</h3>
+<table>
+    <tr>
+        <td>Id</td>
+        <td>Наименвание</td> 
+    </tr>
+    @{
+        foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+        </tr>
+        }
+    }
+</table>

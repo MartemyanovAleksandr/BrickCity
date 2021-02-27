@@ -7,8 +7,9 @@ namespace BrickCity.Models
 {
     public class Price
     {
-        int PlantId { get; set; }
-        DateTime Date { get; set; }
-        double Value { get; set; }
+        public int Id { get; set; }
+        public int PlantId { get; set; }
+        public DateTime Date { get; set; }
+        public double Value { get; set; }
     }
 }

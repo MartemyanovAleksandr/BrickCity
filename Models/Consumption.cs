@@ -7,10 +7,11 @@ namespace BrickCity.Models
 {
     public class Consumption
     {
+        public int Id { get; set; } 
         public int ConsumerId { get; set; } 
         public Consumer Consumer { get; set; }
-        
-        DateTime Date { get; set; }
-        double Value { get; set; }
+
+        public DateTime Date { get; set; }
+        public double Value { get; set; }
     }
 }

@@ -12,17 +12,17 @@ namespace BrickCity.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private BrickDB _db;
+        public HomeController(ILogger<HomeController> logger,BrickDB context)
         {
+            _db = context;
             _logger = logger;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
+            return View(_db.Consumers.ToList());
+        }       
         public IActionResult Privacy()
         {
             return View();
