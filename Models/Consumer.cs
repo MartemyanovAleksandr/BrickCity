@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BrickCity.Models
 {
-    public class ConsumerType
+    public class Consumer
     {
         public int Id { get; set; }
         public string Name { get; set; }
