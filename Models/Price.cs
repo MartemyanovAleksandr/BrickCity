@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BrickCity.Models
 {
-    public class BrickPrice
+    public class Price
     {
         int PlantId { get; set; }
         DateTime Date { get; set; }

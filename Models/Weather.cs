@@ -7,6 +7,7 @@ namespace BrickCity.Models
 {
     public class Weather
     {
+        int HouseId { get; set; }
         DateTime Date { get; set; }
         double Value { get; set; }
     }
