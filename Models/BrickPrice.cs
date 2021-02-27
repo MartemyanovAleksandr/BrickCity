@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 
 namespace BrickCity.Models
 {
-    public class BuildingType
+    public class BrickPrice
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        int PlantId { get; set; }
+        DateTime Date { get; set; }
+        double Value { get; set; }
     }
 }
