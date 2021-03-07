@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace BrickCity.Controllers
@@ -23,7 +24,28 @@ namespace BrickCity.Controllers
         public IActionResult Index()
         {
             return View();
-        }       
+        }    
+        public IActionResult GetHouseConsupmption()
+        {
+            var res = _db.HouseConsumption.ToList();
+            return res.ToJson(); 
+        }            
+        public IActionResult GetPlantConsupmption()
+        {
+            var res = _db.PlantsConsumption.ToList();         
+            return res.ToJson();
+        }
+        public IActionResult GetHouses()
+        {
+            var res = _db.House.ToList();         
+            return res.ToJson();
+        }
+        public IActionResult GetPlants()
+        {
+            var res = _db.Plant.ToList();         
+            return res.ToJson();
+        }
+
         public IActionResult Privacy()
         {
             return View();
