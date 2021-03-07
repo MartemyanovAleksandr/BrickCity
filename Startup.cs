@@ -1,4 +1,4 @@
-using BrickCity.Models;
+using BrickCity.Models.DB;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;

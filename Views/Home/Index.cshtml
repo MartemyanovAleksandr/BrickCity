@@ -1,21 +1,249 @@
-﻿@model IEnumerable<BrickCity.Models.Consumer>
-@{
-    ViewData["Title"] = "Список потребителей";
+﻿@{
+    ViewData["Title"] = "График";
 }
 
-<h3>Потребители</h3>
-<table>
-    <tr>
-        <td>Id</td>
-        <td>Наименвание</td> 
-    </tr>
-    @{
-        foreach (var item in Model)
-        {
-        <tr>
-            <td>@item.Id</td>
-            <td>@item.Name</td>
-        </tr>
+@section Styles{
+    <style>
+        #chartdiv {
+            width: 100%;
+            height: 500px;
         }
-    }
-</table>
+               
+    </style>
+}
+
+@section Scripts{
+
+    <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://cdn.amcharts.com/lib/4/themes/animated.js"></script>
+    <script>
+        var myApp = function () {
+            // Themes begin
+            // Using default theme
+            am4core.useTheme(am4themes_animated);
+            // Themes end
+
+            var chart = am4core.createFromConfig({
+                "data": [{
+                    "year": "1994",
+                    "cars": 1587,
+                    "motorcycles": 650,
+                    "bicycles": 121
+                }, {
+                    "year": "1995",
+                    "cars": 1567,
+                    "motorcycles": 683,
+                    "bicycles": 146
+                }, {
+                    "year": "1996",
+                    "cars": 1617,
+                    "motorcycles": 691,
+                    "bicycles": 138
+                }, {
+                    "year": "1997",
+                    "cars": 1630,
+                    "motorcycles": 642,
+                    "bicycles": 127
+                }, {
+                    "year": "1998",
+                    "cars": 1660,
+                    "motorcycles": 699,
+                    "bicycles": 105
+                }, {
+                    "year": "1999",
+                    "cars": 1683,
+                    "motorcycles": 721,
+                    "bicycles": 109
+                }, {
+                    "year": "2000",
+                    "cars": 1691,
+                    "motorcycles": 737,
+                    "bicycles": 112
+                }, {
+                    "year": "2001",
+                    "cars": 1298,
+                    "motorcycles": 680,
+                    "bicycles": 101
+                }, {
+                    "year": "2002",
+                    "cars": 1275,
+                    "motorcycles": 664,
+                    "bicycles": 97
+                }, {
+                    "year": "2003",
+                    "cars": 1246,
+                    "motorcycles": 648,
+                    "bicycles": 93
+                }, {
+                    "year": "2004",
+                    "cars": 1318,
+                    "motorcycles": 697,
+                    "bicycles": 111
+                }, {
+                    "year": "2005",
+                    "cars": 1213,
+                    "motorcycles": 633,
+                    "bicycles": 87
+                }, {
+                    "year": "2006",
+                    "cars": 1199,
+                    "motorcycles": 621,
+                    "bicycles": 79
+                }, {
+                    "year": "2007",
+                    "cars": 1110,
+                    "motorcycles": 210,
+                    "bicycles": 81
+                }, {
+                    "year": "2008",
+                    "cars": 1165,
+                    "motorcycles": 232,
+                    "bicycles": 75
+                }, {
+                    "year": "2009",
+                    "cars": 1145,
+                    "motorcycles": 219,
+                    "bicycles": 88
+                }, {
+                    "year": "2010",
+                    "cars": 1163,
+                    "motorcycles": 201,
+                    "bicycles": 82
+                }, {
+                    "year": "2011",
+                    "cars": 1180,
+                    "motorcycles": 285,
+                    "bicycles": 87
+                }, {
+                    "year": "2012",
+                    "cars": 1159,
+                    "motorcycles": 277,
+                    "bicycles": 71
+                }],
+                "dateFormatter": {
+                    "inputDateFormat": "yyyy"
+                },
+                "xAxes": [{
+                    "type": "DateAxis",
+                    "renderer": {
+                        "minGridDistance": 50
+                    },
+                    "startLocation": 0.5,
+                    "endLocation": 0.5,
+                    "baseInterval": {
+                        "timeUnit": "year",
+                        "count": 1
+                    },
+                    "axisRanges": [{
+                        "date": new Date(2001, 0, 1),
+                        "endDate": new Date(2003, 0, 1),
+                        "axisFill": {
+                            "fill": "#dc67ab",
+                            "fillOpacity": 0.2
+                        },
+                        "label": {
+                            "text": "Fines for speeding increased",
+                            "inside": true,
+                            "rotation": 90,
+                            "horizontalCenter": "right",
+                            "verticalCenter": "middle"
+                        }
+                    }, {
+                        "date": new Date(2007, 0, 1),
+                        "grid": {
+                            "stroke": "#dc67ab",
+                            "strokeOpacity": 0.6,
+                            "strokeDasharray": "5,2"
+                        },
+                        "label": {
+                            "text": "Motorcycle fee introduced",
+                            "inside": true,
+                            "rotation": 90,
+                            "horizontalCenter": "right",
+                            "verticalCenter": "middle"
+                        }
+                    }]
+                }],
+                "yAxes": [{
+                    "type": "ValueAxis",
+                    "tooltip": {
+                        "disabled": true
+                    }
+                }],
+                "series": [{
+                    "type": "LineSeries",
+                    "dataFields": {
+                        "dateX": "year",
+                        "valueY": "cars"
+                    },
+                    "name": "Cars",
+                    "tooltipHTML": "<img src='https://www.amcharts.com/lib/3/images/car.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>",
+                    "tooltip": {
+                        "background": {
+                            "fill": "#FFF",
+                            "strokeWidth": 3
+                        },
+                        "getStrokeFromObject": true,
+                        "getFillFromObject": false
+                    },
+                    "fillOpacity": 0.6,
+                    "strokeWidth": 2,
+                    "stacked": true
+                }, {
+                    "type": "LineSeries",
+                    "dataFields": {
+                        "dateX": "year",
+                        "valueY": "motorcycles"
+                    },
+                    "name": "Motorcycles",
+                    "tooltipHTML": "<img src='https://www.amcharts.com/lib/3/images/motorcycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>",
+                    "tooltip": {
+                        "background": {
+                            "fill": "#FFF",
+                            "strokeWidth": 3
+                        },
+                        "getStrokeFromObject": true,
+                        "getFillFromObject": false
+                    },
+                    "fillOpacity": 0.6,
+                    "strokeWidth": 2,
+                    "stacked": true
+                }, {
+                    "type": "LineSeries",
+                    "dataFields": {
+                        "dateX": "year",
+                        "valueY": "bicycles"
+                    },
+                    "name": "Bicycles",
+                    "tooltipHTML": "<img src='https://www.amcharts.com/lib/3/images/bicycle.png' style='vertical-align:bottom; margin-right: 10px; width:28px; height:21px;'><span style='font-size:14px; color:#000000;'><b>{valueY.value}</b></span>",
+                    "tooltip": {
+                        "background": {
+                            "fill": "#FFF",
+                            "strokeWidth": 3
+                        },
+                        "getStrokeFromObject": true,
+                        "getFillFromObject": false
+                    },
+                    "fillOpacity": 0.6,
+                    "strokeWidth": 2,
+                    "stacked": true
+                }],
+                "cursor": {
+                    "type": "XYCursor"
+                },
+                "scrollbarX": {
+                    "type": "Scrollbar"
+                },
+                "legend": {
+                    "position": "top"
+                }
+            }, "chartdiv", am4charts.XYChart);
+        }();
+    </script>
+}
+<div class="container">
+    <h3>График потребителения</h3>
+    <div id="chartdiv"></div>
+</div>
+    

@@ -1,4 +1,5 @@
 ﻿using BrickCity.Models;
+using BrickCity.Models.DB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -21,7 +22,7 @@ namespace BrickCity.Controllers
 
         public IActionResult Index()
         {
-            return View(_db.Consumers.ToList());
+            return View();
         }       
         public IActionResult Privacy()
         {
