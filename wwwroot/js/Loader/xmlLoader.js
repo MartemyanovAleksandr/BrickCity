@@ -44,6 +44,9 @@
                 data: formData,
                 contentType: false,
                 processData: false,
+                mimeType: "multipart/form-data",
+                async: true,
+                crossDomain: true,
                 beforeSend: function (xhr) {
 
                 },

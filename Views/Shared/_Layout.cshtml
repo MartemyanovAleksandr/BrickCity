@@ -18,7 +18,10 @@
                         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                             <ul class="navbar-nav flex-grow-1">
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="HouseConsumption" asp-action="Index">Редактор</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="HouseConsumption" asp-action="Index">Дома</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="PlantsConsumption" asp-action="Index">Заводы</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Графики</a>
@@ -31,13 +34,7 @@
                     </div>
                 </nav>
             </div>
-        </div>
-    </header>
-    <section>
-        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 100px;">
-            <!-- Position it -->
             <div style="position: absolute; top: 0; right: 0;">
-
                 <!-- Then put toasts within -->
                 <div class="toast ok" role="alert" aria-live="assertive" aria-atomic="true">
                     <div class="toast-header">
@@ -64,7 +61,8 @@
                 </div>
             </div>
         </div>
-    </section>
+    </header>
+   
 
     @RenderBody()
 
