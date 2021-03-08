@@ -18,7 +18,7 @@
                         <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                             <ul class="navbar-nav flex-grow-1">
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Editor" asp-action="Index">Редактор</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="HouseConsumption" asp-action="Index">Редактор</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Графики</a>
@@ -33,38 +33,38 @@
             </div>
         </div>
     </header>
-   <section>
-       <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 100px;">
-           <!-- Position it -->
-           <div style="position: absolute; top: 0; right: 0;">
+    <section>
+        <div aria-live="polite" aria-atomic="true" style="position: relative; min-height: 100px;">
+            <!-- Position it -->
+            <div style="position: absolute; top: 0; right: 0;">
 
-               <!-- Then put toasts within -->
-               <div class="toast ok" role="alert" aria-live="assertive" aria-atomic="true">
-                   <div class="toast-header">                       
-                       <strong class="mr-auto">Загрузка</strong>                      
-                       <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <div class="toast-body">
-                      ОК
-                   </div>
-               </div>
+                <!-- Then put toasts within -->
+                <div class="toast ok" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Загрузка</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        ОК
+                    </div>
+                </div>
 
-               <div class="toast fail" role="alert" aria-live="assertive" aria-atomic="true">
-                   <div class="toast-header">                       
-                       <strong class="mr-auto">Загрузка</strong>                      
-                       <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                           <span aria-hidden="true">&times;</span>
-                       </button>
-                   </div>
-                   <div class="toast-body">
-                       Ошибка
-                   </div>
-               </div>
-           </div>
-       </div>
-   </section>
+                <div class="toast fail" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header">
+                        <strong class="mr-auto">Загрузка</strong>
+                        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="toast-body">
+                        Ошибка
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     @RenderBody()
 
@@ -76,89 +76,7 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            function send(file) {
-
-                function showError() {
-                    console.log("showError");
-                    $(".toast.fail").toast('show');
-                };
-
-                function showOK() {
-                    console.log("showOK");
-                    $(".toast.ok").toast('show');
-                };
-
-                function sendForm(file) {
-
-                    var iframe = $("<iframe>").appendTo("body").css("display", "none").load(function (e) {
-                        var response = $(this).contents().find("body").html();
-                        (response != "ok") ? showError() : showOK();
-                        $(this).remove();
-                    });
-
-                    var frameBody = iframe.contents().find("body");
-
-                    var form = $("<form>").appendTo(frameBody).attr({
-                        "action": "/Loader/Upload",
-                        "method": "POST",
-                        "target": "_self",
-                        "enctype": "multipart/form-data"
-                    });
-
-                    $("<input>").appendTo(form).attr("name", "uploads").val(file);
-                    form.submit();
-                };
-
-                function sendData(file) {
-
-                    var formData = new FormData()
-                    formData.append("upload", file);
-
-                    return $.ajax({
-                        url: "/Loader/Upload",
-                        method: "POST",
-                        type: "POST",
-                        data: formData,
-                        contentType: false,
-                        processData: false,
-                        beforeSend: function (xhr) {
-
-                        },
-                        success: function (data) {
-                            showOK();
-                        },
-                        error: function () {
-                            showError();
-                        }
-                    });
-                };
-
-                (window.FormData) ? sendData(file) : sendForm(file);
-            };
-
-            var fileSelector = $("<input>").appendTo('body')
-                .css("display", "none")
-                .attr({
-                    type: "file",
-                    multiple: false,
-                    accept: "text/xml"
-                })
-                .change(function () {
-                    for (var key in this.files) {
-                        if (key == "length") return;
-                        var file = this.files[key];
-                        if (file) send(file);
-                    };
-                });
-
-            $("#myFileLoader").css("cursor", 'pointer').click(function () {
-                fileSelector.click();
-            });
-
-        });
-    </script>
+    <script src="~/js/Loader/xmlLoader.js"></script>
 
     @RenderSection("Scripts", required: false)
 
